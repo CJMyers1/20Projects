@@ -6,6 +6,7 @@ const websiteNameEL = document.getElementById('website-name');
 const websiteUrlEl = document.getElementById('website-url');
 const bookmarksContainer = document.getElementById('bookmarks-container');
 
+// You can use an object {} to make it so you don't loop each time you delete a bookmark.
 let bookmarks = [];
 
 // Show Modal, Focus on Input
