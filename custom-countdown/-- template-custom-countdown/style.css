@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;700&display=swap');
 
 html {
   box-sizing: border-box;
@@ -10,7 +10,7 @@ body {
   overflow-y: hidden;
   display: flex;
   align-items: center;
-
+  font-family: Inknut Antiqua, sans-serif;
 }
 
 /* Video Background */
@@ -18,7 +18,8 @@ body {
   position: fixed;
   right: 0;
   bottom: 0;
-
+  width: 100vw;
+  height: auto;
 }
 
 video {
@@ -32,7 +33,9 @@ video {
   position: fixed;
   left: 0;
   top: 0;
-
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.45);
 }
 
 /* Container */
@@ -46,12 +49,11 @@ video {
   z-index: 2;
   display: flex;
   justify-content: center;
-
+  background: rgba(200, 200, 200, 0.45);
 }
 
 .input-container {
   position: relative;
-  top: 20px;
 }
 
 h1 {
@@ -64,6 +66,7 @@ h1 {
 /* Form */
 .form {
   width: 480px;
+  /* margin-left: 45px; */
 }
 
 label {
@@ -79,7 +82,7 @@ input {
   border-radius: 20px;
   background: #fff;
   outline: none;
-
+  font-family: Inknut Antiqua, sans-serif;
 }
 
 /* Button */
@@ -90,13 +93,15 @@ button {
   margin-top: 15px;
   border: none;
   text-transform: uppercase;
-  background: #006959;
+  background: #132729;
   color: white;
   cursor: pointer;
   outline: none;
 }
 
-
+button:hover {
+  filter: brightness(110%);
+}
 
 /* Countdown */
 ul {
@@ -104,7 +109,7 @@ ul {
 }
 
 li {
-
+  display: inline-block;
   font-size: 30px;
   list-style-type: none;
   padding: 10px;
@@ -120,23 +125,48 @@ li span {
 /* Complete */
 .complete {
   position: relative;
-  top: 60px;
+  top: 10px;
 }
 
+.complete-title {
+  animation: complete 4s infinite;
+}
+
+@keyframes complete {
+  0% {
+    color: rgb(204, 16, 16);
+  }
+  25% {
+    color: rgb(242, 245, 50);
+  }
+  50% {
+    color: rgb(178, 233, 27);
+    transform: scale(1.5);
+  }
+  75% {
+    color: rgb(16, 104, 204);
+  }
+  100% {
+    color: rgb(198, 16, 204);
+  }
+}
 
 /* Media Query: Large Smartphone (Vertical) */
 @media screen and (max-width: 600px) {
   .video-background {
-
+  height: 100vh;
+  width: 100vw;
   }
   
   video {
-
-    margin-top: -1px;
+    object-fit: cover;
+    object-position: 45%;
+    /* margin-top: -1px; */
   }
 
   .container {
-
+    min-width: unset;
+    width: 95vw;
     min-height: 245px;
     padding: 20px;
     margin: 10px;
@@ -164,10 +194,10 @@ li span {
   }
 
   li {
-    font-size: 15px;
+    font-size: 11px;
   }
 
   li span {
-    font-size: 40px;
+    font-size: 30px;
   }
 }
