@@ -3,7 +3,7 @@ const saveItemBtns = document.querySelectorAll('.solid');
 const addItemContainers = document.querySelectorAll('.add-container');
 const addItems = document.querySelectorAll('.add-item');
 // Item Lists
-const itemLists = document.querySelectorAll('.drag-item-list');
+const listColumns = document.querySelectorAll('.drag-item-list');
 const backlogList = document.getElementById('backlog-list');
 const progressList = document.getElementById('progress-list');
 const completeList = document.getElementById('complete-list');
@@ -20,6 +20,8 @@ let onHoldListArray = [];
 let listArrays = [];
 
 // Drag Functionality
+let draggedItem;
+let currentColumn
 
 
 // Get Arrays from localStorage if available, set default values if not
@@ -56,6 +58,8 @@ function createItemEl(columnEl, column, item, index) {
   const listEl = document.createElement('li');
   listEl.classList.add('drag-item');
   listEl.textContent = item;
+  listEl.draggable = true;
+  listEl.setAttribute('ondragstart', 'drag(event)');
   // Append
   columnEl.appendChild(listEl);
 
@@ -92,8 +96,74 @@ function updateDOM() {
   });
 
   // Run getSavedColumns only once, Update Local Storage
+  updatedOnLoad = true;
+  updateSavedColumns();
+
+}
+
+// Show Add item input box
+function showInputBox(column) {
+  addBtns[column].style.visibility = 'hidden';
+  saveItemBtns[column].style.display = 'flex';
+  addItemContainers[column].style.display = 'flex';
+}
+
+// Hide Item Input Box
+function hideInputBox(column) {
+  addBtns[column].style.visibility = 'visible';
+  saveItemBtns[column].style.display = 'none';
+  addItemContainers[column].style.display = 'none';
+}
 
 
+// Allows arrays to refelct drag and drop items
+function rebuildArrays() {
+  backlogListArray = [];
+  for ( let i = 0; i < backlogList.children.length; i++) {
+    backlogListArray.push(backlogList.children[i].textContent);
+  }
+  progressListArray = [];
+  for ( let i = 0; i < progressList.children.length; i++) {
+    progressListArray.push(progressList.children[i].textContent);
+  }
+  completeListArray = [];
+  for ( let i = 0; i < completeList.children.length; i++) {
+    completeListArray.push(completeList.children[i].textContent);
+  }
+  onHoldListArray = [];
+  for ( let i = 0; i < onHoldList.children.length; i++) {
+    onHoldListArray.push(onHoldList.children[i].textContent);
+  }
+  updateDOM();
+}
+
+// When Item Enters Column Area
+function dragEnter(column) {
+  listColumns[column].classList.add('over');
+  currentColumn = column;
+}
+
+// When Item Starts Dragging
+function drag(e) {
+  draggedItem = e.target;
+}
+
+// Column Allows for Item to Drop
+function allowDrop(e) {
+  e.preventDefault();
+  // Remove Backgroud Color/Padding
+  listColumns.forEach((column) => {
+    column.classList.remove('over');
+  });
+// Add Item to Column
+const parent = listColumns[currentColumn];
+parent.appendChild(draggedItem);
+rebuildArrays();
+}
+
+// Dropping Item in Column
+function drop(e) {
+  e.preventDefault();
 }
 
 // On Load
