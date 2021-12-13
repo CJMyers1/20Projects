@@ -45,7 +45,7 @@ let valueY = 0;
 function bestScoresToDOM() {
   bestScores.forEach((bestScore, index) => {
     const bestScoreEl = bestScore;
-    bestScoreEl.textContent =`${bestScoreArray[index].bestScore}s`
+    bestScoreEl.textContent =`${bestScoreArray[index].bestScore}s`;
   });
 }
 
@@ -150,7 +150,7 @@ function addTime() {
 function startTimer() {
   // Reset Times
   timePlayed = 0;
-  PenaltyTime = 0;
+  penaltyTime = 0;
   finalTime = 0;
   timer = setInterval(addTime, 100);
   gamePage.removeEventListener('click', startTimer);
@@ -162,7 +162,7 @@ function select(guessedTrue) {
   valueY += 80;
   itemContainer.scroll(0, valueY);
   // Add player guess to array
-  return guessedTrue ? playerGuessArray.push('true') :playerGuessArray.push('false');
+  return guessedTrue ? playerGuessArray.push('true') : playerGuessArray.push('false');
 }
 
 // Display Game Page
