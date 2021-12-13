@@ -224,6 +224,7 @@ function startGame() {
   ballReset();
   createCanvas();
   animate();
+//   the movement of the paddel only works in fullscreen. this seems to be a chrome issue
   canvas.addEventListener('mousemove', (e) => {
     playerMoved = true;
     // Compensate for canvas being centered
