@@ -45,7 +45,7 @@ let valueY = 0;
 function bestScoresToDOM() {
   bestScores.forEach((bestScore, index) => {
     const bestScoreEl = bestScore;
-    bestScoreEl.textContent =`${bestScoreArray[index].bestScore}s`;
+    bestScoreEl.textContent = `${bestScoreArray[index].bestScore}s`;
   });
 }
 
@@ -71,7 +71,7 @@ function updateBestScore() {
     // Select correct Best Score to Update
     if (questionAmount == score.questions) {
       // Return Best Score as number with one decimal
-      const savedBestScore = Number(bestScoreArray[index].bestscore);
+      const savedBestScore = Number(bestScoreArray[index].bestScore);
       // Update if the new final score is less or replacing zero
       if (savedBestScore === 0 || savedBestScore > finalTime) {
         bestScoreArray[index].bestScore = finalTimeDisplay;
